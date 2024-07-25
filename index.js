@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import connectDB from "./Database/config.js";
 import authRoute from './Routers/authRouter.js';
 import userRoute from './Routers/userRouter.js';
+import cookieParser from "cookie-parser";
 
 dotenv.config()
 
@@ -15,6 +16,7 @@ app.use(cors({
 }))
 
 app.use(express.json())
+app.use(cookieParser());
 
 //error handler
 app.use((err,req,res,next)=>{

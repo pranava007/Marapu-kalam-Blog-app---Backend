@@ -56,7 +56,7 @@ export const logingUser = async (req,res,next) =>{
 
 }
 
-// Oauth 
+// OAuth 
 
 export const google = async (req,res,next)=>{
     const {email,name,profilePic} = req.body;
