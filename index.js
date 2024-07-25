@@ -2,10 +2,8 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./Database/config.js";
-import authRoute from './Routers/authRouter.js'
-
-
-
+import authRoute from './Routers/authRouter.js';
+import userRoute from './Routers/userRouter.js';
 
 dotenv.config()
 
@@ -35,9 +33,13 @@ app.get('/',(req,res)=>{
     console.log("Welcom to the API");
 })
 
-// API Router
+//API Router
 
+//Auth Router
 app.use("/api/auth",authRoute)
+
+//User Router
+app.use("/api/user",userRoute);
 
 
 app.listen(process.env.PORT,()=>{
