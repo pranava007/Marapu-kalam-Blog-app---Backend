@@ -1,10 +1,11 @@
 import express from "express";
-import { updateUser } from "../Controllers/userController.js";
-import { middleWare } from "../Middleware/MiddleWare.js";
+import { deleteUser, updateUser } from "../Controllers/userController.js";
+import { verfiyToken } from "../Middleware/verfiyToken.js";
 
 
 const router = express.Router();
 
-router.put('/update/:id',middleWare,updateUser)
+router.put('/update/:id',verfiyToken,updateUser);
+router.delete('/delete/:id',verfiyToken,deleteUser);
 
 export default router;
