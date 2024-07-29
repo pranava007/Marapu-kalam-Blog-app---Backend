@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+// register
 export const registerUser = async (req, res, next) => {
   const { username, email, password } = req.body;
 
@@ -34,6 +35,7 @@ export const registerUser = async (req, res, next) => {
   }
 };
 
+// login
 export const logingUser = async (req, res, next) => {
   const { email, password } = req.body;
   if (!email || !password || email === "" || password === "") {
@@ -48,7 +50,7 @@ export const logingUser = async (req, res, next) => {
     if (!userDetails || !userPassword) {
       return next(errorHandle(400, "Invalid Credentials"));
     }
-    const token = jwt.sign({ id: userDetails._id }, process.env.JWT_SECRET_KEY);
+    const token = jwt.sign({ id: userDetails._id,isAdmin:userDetails.isAdmin }, process.env.JWT_SECRET_KEY);
 
     // password hidden not store db
     const { password: passkey, ...rest } = userDetails._doc;
@@ -68,7 +70,7 @@ export const google = async (req, res, next) => {
   try {
     const user = await User.findOne({ email });
     if (user) {
-      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET_KEY);
+      const token = jwt.sign({ id: user._id,isAdmin:user.isAdmin }, process.env.JWT_SECRET_KEY);
 
       // password hidden not store db
       const { password: passkey, ...rest } = user._doc;
@@ -94,7 +96,7 @@ export const google = async (req, res, next) => {
       });
       await newUser.save();
       const token = jwt.sign(
-        { id: newUser._id },
+        { id: newUser._id ,isAdmin:newUser.isAdmin},
         process.env.JWT_SECRET_KEY
       );
 
