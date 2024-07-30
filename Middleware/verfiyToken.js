@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 dotenv.config();
 export const verfiyToken = (req,res,next)=>{
   
-    const token = req.headers.authorization;
+    const token = req.headers.token;
     console.log(token);
     if (!token) {
       return next(errorHandle(401, 'Unauthorized Access'));
