@@ -31,7 +31,7 @@ app.use((err, req, res, next) => {
 connectDB();
 
 app.get('/',(req,res)=>{
-    console.log("Welcom to the API");
+    res.status(200).send('App Run Successfully')
 })
 
 //API Router
