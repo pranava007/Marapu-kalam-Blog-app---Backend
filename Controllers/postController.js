@@ -1,6 +1,6 @@
 import Post from "../Models/postModels.js";
 import { errorHandle } from "../Utils/Error.js";
-import {User} from "../Models/userModel.js";
+
 export const createPost = async(req,res,next)=>{
 
     if(!req.User.isUser){
