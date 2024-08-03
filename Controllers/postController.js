@@ -1,9 +1,11 @@
 import Post from "../Models/postModels.js";
 import { errorHandle } from "../Utils/Error.js";
-
+import {User} from "../Models/userModel.js";
 export const createPost = async(req,res,next)=>{
 
-    if(!req.isUser){
+    if(!req.User.isUser){
+        console.log(isUser);
+        
         return next(errorHandle(403,'You Are Not Allowed To Create A Post'))
     }
 
