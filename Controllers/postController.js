@@ -1,4 +1,4 @@
-import Post from "../Models/postModels.js";
+import Postblog from "../Models/postModels.js";
 import { errorHandle } from "../Utils/Error.js";
 
 export const createPost = async(req,res,next)=>{
@@ -14,7 +14,7 @@ export const createPost = async(req,res,next)=>{
     }
 
     const {title,content,image,category} = req.body;
-    const newPost = new Post({title,content,image,category})
+    const newPost = new Postblog({title,content,image,category})
     try {
         
         const savePost = await newPost.save();
@@ -29,7 +29,7 @@ export const createPost = async(req,res,next)=>{
 
 export const getAllPost = async(req,res,next)=>{
     try {
-        const posts = await Post.find();
+        const posts = await Postblog.find();
         res.status(200).json(posts)
     } catch (error) {
         next(error)
