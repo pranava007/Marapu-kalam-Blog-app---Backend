@@ -74,7 +74,7 @@ export const google = async (req, res, next) => {
     const user = await User.findOne({ email });
     if (user) {
       const token = jwt.sign(
-        { id: user._id, isAdmin: user.isAdmin },
+        { id: user._id, isAdmin:user.isAdmin },
         process.env.JWT_SECRET_KEY
       );
 
@@ -84,9 +84,9 @@ export const google = async (req, res, next) => {
       res
         .status(200)
         .cookie("access_Token", token, {
-          httpOnly: true,
+          // httpOnly: true,
         })
-        .json({ message: "User LoggedIn Successfully", rest });
+        .json({ message: "User LoggedIn Successfully", rest,token });
     } else {
       const generatePassword =
         Math.random().toString(36).slice(-8) +
